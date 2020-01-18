@@ -1,2 +1,2 @@
 # Ares
-Super strong (but dumb) hearthstone bot
+Super strong (but dumb) hearthstoner
