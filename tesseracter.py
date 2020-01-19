@@ -1,11 +1,52 @@
 import pytesseract
 
 # image = 'tesseract_test.jfif'
-image = '2020-01-18 (3).png'
+abusive_full = '2020-01-18 (2).png'
+abusive_name = '2020-01-18 (3).png'
 # tesseract_test.jfif as a_image
 
 # print(dir(pytesseract))
 
-print(pytesseract.image_to_string(image))
+# print(pytesseract.image_to_string(image))
 # print(pytesseract.image_to_pdf_or_hocr(image))
 print('Vei')
+
+
+from PIL import Image
+import numpy
+
+def subimg(img1,img2):
+    img1=numpy.asarray(img1)
+    img2=numpy.asarray(img2)
+
+    #img1=numpy.array([[1,2,3],[4,5,6],[7,8,9]])
+    #img2=numpy.array([[0,0,0,0,0],[0,1,2,3,0],[0,4,5,6,0],[0,7,8,9,0],[0,0,0,0,0]])
+
+    img1y=img1.shape[0]
+    img1x=img1.shape[1]
+
+    img2y=img2.shape[0]
+    img2x=img2.shape[1]
+
+    stopy=img2y-img1y+1
+    stopx=img2x-img1x+1
+
+    for x1 in range(0,stopx):
+        for y1 in range(0,stopy):
+            x2=x1+img1x
+            y2=y1+img1y
+
+            pic=img2[y1:y2,x1:x2]
+            test=pic==img1
+
+            if test.all():
+                return x1, y1
+
+    return False
+
+small=Image.open(abusive_name)
+big=Image.open(abusive_full)            # Skilar position (x,y)
+
+big = Image.open('151501 (4).png')      # Skilar false
+
+print(subimg(small, big))
