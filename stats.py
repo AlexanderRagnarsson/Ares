@@ -60,9 +60,9 @@ def find_attack(card):
 
 
 def get_max_val(card, to_find):
-    img = cv.imread(card,1)
+    img = cv.imread(card,0)
     img2 = img.copy()
-    template = cv.imread(to_find,1)
+    template = cv.imread(to_find,0)
 
     scale_percent = card_res/standard_res
     new_width = int(template.shape[1] * card_res/standard_res)
@@ -117,10 +117,11 @@ def closest_match(a_list):
 
 import time
 
-for i in range(-1000, 0, 100):
+for i in range(-900, 900, 50):
     card_res += i
-    the_card = 'Hearthstone myndir\\Wolfrider muligan.png'
+    the_card = 'Hearthstone myndir\\Argent muligan.png'
     print(i, 'Stats:', find_mana(the_card),find_attack(the_card),find_health(the_card))
     card_res -= i
 
-# Ef muligan þá 1/(1080 - 600 ) * card_res
+# Miðað við 1080p þá virkaði -100 á argent í hand
+# Miðað við 1080p þá virkaði -450 á argent í muligan

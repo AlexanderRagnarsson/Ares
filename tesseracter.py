@@ -64,21 +64,10 @@ def read_card(an_img):
 # print(subimg(small, big))
 
 
-<<<<<<< HEAD
-if platform.system() == 'Darwin': # Gaman af þessu haaaa
-    img = cv.imread("Hearthstone myndir/Angry chicken full.png",0)
-    img2 = img.copy()
-    template = cv.imread('Hearthstone myndir/New folder/1 hp.png',0)
-else:   
-    img = cv.imread('Hearthstone myndir\\Shattered sun cleric.png',0)
-    img2 = img.copy()
-    template = cv.imread('Hearthstone myndir\\New folder\\3 mana.png',0)
-=======
 
 img = cv.imread(fix("Hearthstone myndir/Angry chicken full.png"),0)
 img2 = img.copy()
 template = cv.imread(fix('Hearthstone myndir/New folder/1 hp (abusive) bigger.png'),0)
->>>>>>> b13b21f3f36ee5530770c2c33fcb0aba0508f12e
 
 total = 0
 total_list = []
