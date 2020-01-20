@@ -67,11 +67,11 @@ def read_card(an_img):
 if platform.system() == 'Darwin': # Gaman af þessu haaaa
     img = cv.imread("Hearthstone myndir/Angry chicken full.png",0)
     img2 = img.copy()
-    template = cv.imread('Hearthstone myndir/New folder/1 hp (abusive) bigger.png',0)
+    template = cv.imread('Hearthstone myndir/New folder/1 hp.png',0)
 else:   
-    img = cv.imread('Hearthstone myndir\\Abusive full.png',0)
+    img = cv.imread('Hearthstone myndir\\Shattered sun cleric.png',0)
     img2 = img.copy()
-    template = cv.imread('Hearthstone myndir\\New folder\\1 mana (abusive) bigger.png',0)
+    template = cv.imread('Hearthstone myndir\\New folder\\3 mana.png',0)
 
 total = 0
 total_list = []
@@ -80,13 +80,13 @@ other_list = []
 w, h = template.shape[::-1]
 # All the 6 methods for comparison in a list
 # methods = ['cv.TM_CCOEFF', 'cv.TM_CCOEFF_NORMED', 'cv.TM_CCORR',
-#             'cv.TM_CCORR_NORMED', 'cv.TM_SQDIFF', 'cv.TM_SQDIFF_NORMED']
+            # 'cv.TM_CCORR_NORMED', 'cv.TM_SQDIFF', 'cv.TM_SQDIFF_NORMED']
 # Hin þrjú skila mjög stóru max_val
 methods = ['cv.TM_CCOEFF_NORMED','cv.TM_CCORR_NORMED', 'cv.TM_SQDIFF_NORMED']
 read_card(img2)
 
-# colormap = 'gray'
-colormap = 'Greys_r'
+colormap = 'rainbow'
+# colormap = 'binary'
 
 for meth in methods:
     img = img2.copy()
