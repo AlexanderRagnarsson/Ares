@@ -117,11 +117,12 @@ def closest_match(a_list):
 
 import time
 
-for i in range(-900, 900, 50):
+for i in range(-445, -410, 1):
     card_res += i
-    the_card = 'Hearthstone myndir\\Argent muligan.png'
+    the_card = 'Hearthstone myndir\\Apprentice muligan.png'
     print(i, 'Stats:', find_mana(the_card),find_attack(the_card),find_health(the_card))
     card_res -= i
 
 # Miðað við 1080p þá virkaði -100 á argent í hand
-# Miðað við 1080p þá virkaði -450 á argent í muligan
+# Miðað við 1080p þá virkaði -450 á argent í muligan   -440 nákvæmast
+# Fyrir muligan: -440, virkaði fyrir argent, annoy og apprentice
