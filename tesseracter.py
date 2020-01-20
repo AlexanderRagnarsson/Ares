@@ -1,6 +1,8 @@
 import pytesseract
 from PIL import Image
 import numpy
+import os
+import platform
 
 def subimg(img1,img2):
     img1=numpy.asarray(img1)
@@ -42,10 +44,14 @@ import cv2 as cv
 import numpy as np
 from matplotlib import pyplot as plt
 
-
-img = cv.imread('Hearthstone myndir\\Depth charge full.png',0)
-img2 = img.copy()
-template = cv.imread('Hearthstone myndir\\New folder\\1 hp (abusive) bigger.png',0)
+if platform.system() == 'Darwin': # Gaman af þessu haaaa
+    img = cv.imread('Hearthstone myndir/Depth charge full.png',0)
+    img2 = img.copy()
+    template = cv.imread('Hearthstone myndir/New folder/1 hp (abusive) bigger.png',0)
+else:   
+    img = cv.imread('Hearthstone myndir\\Depth charge full.png',0)
+    img2 = img.copy()
+    template = cv.imread('Hearthstone myndir\\New folder\\1 hp (abusive) bigger.png',0)
 
 total = 0
 total_list = []
