@@ -1,29 +1,40 @@
 from operator import itemgetter
 
+max_mana = 12
+max_attack = 20
+max_hero_health = 30
+max_health = 15
 
 # Kannski betra að hafa frekar min delta miðað við 1
 # (maxið er kannski verri niðustaða)
 
 def find_mana(card):
     mana_list = []
-    for num in range(1,12):
+    for num in range(1,max_mana+1):
         mana = f'Hearthstone myndir\\{num} mana.png'
         mana_list.append((num, get_max_val(card,mana)))
-    return max(mana_list, key=itemgetter(1))[0]
+    
+    return closest_match(mana_list)
 
-def find_health(card):
+def find_health(card, hero=False):
+    if hero:
+        max_hp = max_hero_health
+    else:
+        max_hp = max_health
     hp_list = []
-    for num in range(1,12):
+
+    for num in range(1,max_hp+1):
         hp = f'Hearthstone myndir\\{num} hp.png'
         hp_list.append((num, get_max_val(card,hp)))
-    return max(hp_list, key=itemgetter(1))[0]
+    
+    return closest_match(hp_list)
 
 def find_attack(card):
     attack_list = []
-    for num in range(1,12):
+    for num in range(1,max_attack+1):
         attack = f'Hearthstone myndir\\{num} mana.png'
         attack_list.append((num, get_max_val(card,attack)))
-    return max(attack_list, key=itemgetter(1))[0]
+    return closest_match(attack_list)
 
 def get_max_val(card, template):
     card_copy = card.copy()
@@ -59,3 +70,13 @@ def get_max_val(card, template):
         # plt.show()
     
     return total_list/len(methods)
+
+def closest_match(a_list):
+    """ Accepts a list of tuples (stat, certainty) returns closest match """
+    the_stat, min_delta = a_list[0][0], abs(a_list[0][1]-1)
+
+    for stat, match in a_list:
+        if abs(match-1) < min_delta:
+            the_stat, min_delta = stat, match
+        
+    return the_stat
