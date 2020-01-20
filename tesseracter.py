@@ -6,6 +6,7 @@ from PIL import Image
 import numpy
 from pathlib import Path
 import platform
+from fixed_path import fix
 
 def subimg(img1,img2):
     img1=numpy.asarray(img1)
@@ -39,14 +40,11 @@ def subimg(img1,img2):
 def read_card(an_img):
     '''Returns the stats of a given card from its image.'''
 
-    if platform.system() == 'Darwin':
-        templates = ["Hearthstone myndir/New folder/1 mana (abusive).png","Hearthstone myndir/New folder/1 attack (abusive).png",\
-            "Hearthstone myndir/New folder/1 hp (abusive).png"]
-    else:
-        templates = ["Hearthstone myndir\\New folder\\1 mana (abusive).png","Hearthstone myndir\\New folder\\1 attack (abusive).png",\
-            "Hearthstone myndir\\New folder\\1 hp (abusive).png"]
+    templates = ["Hearthstone myndir/New folder/1 mana (abusive).png","Hearthstone myndir/New folder/1 attack (abusive).png",\
+        "Hearthstone myndir/New folder/1 hp (abusive).png"]
 
     for data_img in templates:
+        data_img = fix(data_img)
         total = 0
         template = cv.imread(data_img,0)
         for meth in methods:
@@ -67,7 +65,7 @@ def read_card(an_img):
 
 
 if platform.system() == 'Darwin': # Gaman af þessu haaaa
-    img = cv.imread("Hearthstone myndir/Abusive full.png",0)
+    img = cv.imread("Hearthstone myndir/Angry chicken full.png",0)
     img2 = img.copy()
     template = cv.imread('Hearthstone myndir/New folder/1 hp (abusive).png',0)
 else:   
