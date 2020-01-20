@@ -1,17 +1,4 @@
 import pytesseract
-
-# image = 'tesseract_test.jfif'
-abusive_full = '2020-01-18 (2).png'
-abusive_name = '2020-01-18 (3).png'
-# tesseract_test.jfif as a_image
-
-# print(dir(pytesseract))
-
-# print(pytesseract.image_to_string(image))
-# print(pytesseract.image_to_pdf_or_hocr(image))
-print('Vei')
-
-
 from PIL import Image
 import numpy
 
@@ -44,9 +31,9 @@ def subimg(img1,img2):
 
     return False
 
-small=Image.open(abusive_name)
-big=Image.open(abusive_full)            # Skilar position (x,y)
 
-big = Image.open('151501 (4).png')      # Skilar false
+big=Image.open('Hearthstone myndir\\Angry chicken full.png')            
+
+small = Image.open('Hearthstone myndir\\New folder\\1 hp (abusive).png')
 
 print(subimg(small, big))
