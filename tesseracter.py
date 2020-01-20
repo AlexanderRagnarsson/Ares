@@ -1,6 +1,11 @@
 import pytesseract
+import cv2 as cv
+import numpy as np
+from matplotlib import pyplot as plt
 from PIL import Image
 import numpy
+import os
+import platform
 
 def subimg(img1,img2):
     img1=numpy.asarray(img1)
@@ -31,6 +36,28 @@ def subimg(img1,img2):
 
     return False
 
+def read_card(an_img):
+    '''Returns the stats of a given card from its image.'''
+    
+    if platform.system() == 'Darwin':
+        templates = ["Hearthstone myndir/New folder/1 mana (abusive).png","Hearthstone myndir/New folder/1 attack (abusive).png",\
+            "Hearthstone myndir/New folder/1 hp (abusive).png"]
+    else:
+        templates = ["Hearthstone myndir\\New folder\\1 mana (abusive).png","Hearthstone myndir\\New folder\\1 attack (abusive).png",\
+            "Hearthstone myndir\\New folder\\1 hp (abusive).png"]
+
+    for data_img in templates:
+        total = 0
+        template = cv.imread(data_img,0)
+        for meth in methods:
+            method = eval(meth)
+        # Apply template Matching
+            res = cv.matchTemplate(img,template,method)
+            min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
+            total += max_val
+        if 0.9 < total/3 < 1.1:
+            print(data_img[29:-14])
+
 
 # big=Image.open('Hearthstone myndir\\Angry chicken full.png')            
 
@@ -38,14 +65,15 @@ def subimg(img1,img2):
 
 # print(subimg(small, big))
 
-import cv2 as cv
-import numpy as np
-from matplotlib import pyplot as plt
 
-
-img = cv.imread('Hearthstone myndir\\Wisp full.png',0)
-img2 = img.copy()
-template = cv.imread('Hearthstone myndir\\New folder\\1 hp (abusive) bigger.png',0)
+if platform.system() == 'Darwin': # Gaman af þessu haaaa
+    img = cv.imread('Hearthstone myndir/Angry chicken full.png',0)
+    img2 = img.copy()
+    template = cv.imread('Hearthstone myndir/New folder/1 attack (abusive).png',0)
+else:   
+    img = cv.imread('Hearthstone myndir\\Depth charge full.png',0)
+    img2 = img.copy()
+    template = cv.imread('Hearthstone myndir\\New folder\\1 mana (abusive) bigger.png',0)
 
 total = 0
 total_list = []
@@ -57,6 +85,7 @@ w, h = template.shape[::-1]
 #             'cv.TM_CCORR_NORMED', 'cv.TM_SQDIFF', 'cv.TM_SQDIFF_NORMED']
 # Hin þrjú skila mjög stóru max_val
 methods = ['cv.TM_CCOEFF_NORMED','cv.TM_CCORR_NORMED', 'cv.TM_SQDIFF_NORMED']
+read_card(img2)
 
 # colormap = 'gray'
 colormap = 'Greys_r'
@@ -84,7 +113,6 @@ for meth in methods:
     plt.title('Detected Point'), plt.xticks([]), plt.yticks([])
     plt.suptitle(meth)
     plt.show()
-
 
 # Eftir að ákveða fastana
 if 0.9 < total/3 < 1.1:
