@@ -69,7 +69,7 @@ if platform.system() == 'Darwin': # Gaman af þessu haaaa
     img2 = img.copy()
     template = cv.imread('Hearthstone myndir/New folder/1 hp (abusive).png',0)
 else:   
-    img = cv.imread('Hearthstone myndir\\Depth charge full.png',0)
+    img = cv.imread('Hearthstone myndir\\Abusive full.png',0)
     img2 = img.copy()
     template = cv.imread('Hearthstone myndir\\New folder\\1 mana (abusive) bigger.png',0)
 
@@ -83,7 +83,7 @@ w, h = template.shape[::-1]
 #             'cv.TM_CCORR_NORMED', 'cv.TM_SQDIFF', 'cv.TM_SQDIFF_NORMED']
 # Hin þrjú skila mjög stóru max_val
 methods = ['cv.TM_CCOEFF_NORMED','cv.TM_CCORR_NORMED', 'cv.TM_SQDIFF_NORMED']
-read_card(img2)
+# read_card(img2)
 
 # colormap = 'gray'
 colormap = 'Greys_r'
