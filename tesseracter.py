@@ -4,7 +4,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from PIL import Image
 import numpy
-import os
+from pathlib import Path
 import platform
 
 def subimg(img1,img2):
@@ -38,7 +38,7 @@ def subimg(img1,img2):
 
 def read_card(an_img):
     '''Returns the stats of a given card from its image.'''
-    
+
     if platform.system() == 'Darwin':
         templates = ["Hearthstone myndir/New folder/1 mana (abusive).png","Hearthstone myndir/New folder/1 attack (abusive).png",\
             "Hearthstone myndir/New folder/1 hp (abusive).png"]
@@ -67,9 +67,9 @@ def read_card(an_img):
 
 
 if platform.system() == 'Darwin': # Gaman af þessu haaaa
-    img = cv.imread('Hearthstone myndir/Angry chicken full.png',0)
+    img = cv.imread("Hearthstone myndir/Abusive full.png",0)
     img2 = img.copy()
-    template = cv.imread('Hearthstone myndir/New folder/1 attack (abusive).png',0)
+    template = cv.imread('Hearthstone myndir/New folder/1 hp (abusive).png',0)
 else:   
     img = cv.imread('Hearthstone myndir\\Depth charge full.png',0)
     img2 = img.copy()

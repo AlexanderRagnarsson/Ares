@@ -32,7 +32,7 @@ def find_health(card, hero=False):
 def find_attack(card):
     attack_list = []
     for num in range(1,max_attack+1):
-        attack = f'Hearthstone myndir\\{num} mana.png'
+        attack = f'Hearthstone myndir\\{num} attack.png'
         attack_list.append((num, get_max_val(card,attack)))
     return closest_match(attack_list)
 
