@@ -40,8 +40,8 @@ def subimg(img1,img2):
 def read_card(an_img):
     '''Returns the stats of a given card from its image.'''
 
-    templates = ["Hearthstone myndir/New folder/1 mana (abusive).png","Hearthstone myndir/New folder/1 attack (abusive).png",\
-        "Hearthstone myndir/New folder/1 hp (abusive).png"]
+    templates = ["Hearthstone myndir/New folder/1 mana.png","Hearthstone myndir/New folder/1 attack.png",\
+        "Hearthstone myndir/New folder/1 hp (abusive) bigger.png"]
 
     for data_img in templates:
         data_img = fix(data_img)
@@ -54,7 +54,7 @@ def read_card(an_img):
             min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
             total += max_val
         if 0.9 < total/3 < 1.1:
-            print(data_img[29:-14])
+            print(data_img[29:])
 
 
 # big=Image.open('Hearthstone myndir\\Angry chicken full.png')            
@@ -67,7 +67,7 @@ def read_card(an_img):
 if platform.system() == 'Darwin': # Gaman af þessu haaaa
     img = cv.imread("Hearthstone myndir/Angry chicken full.png",0)
     img2 = img.copy()
-    template = cv.imread('Hearthstone myndir/New folder/1 hp (abusive).png',0)
+    template = cv.imread('Hearthstone myndir/New folder/1 hp (abusive) bigger.png',0)
 else:   
     img = cv.imread('Hearthstone myndir\\Abusive full.png',0)
     img2 = img.copy()
@@ -83,7 +83,7 @@ w, h = template.shape[::-1]
 #             'cv.TM_CCORR_NORMED', 'cv.TM_SQDIFF', 'cv.TM_SQDIFF_NORMED']
 # Hin þrjú skila mjög stóru max_val
 methods = ['cv.TM_CCOEFF_NORMED','cv.TM_CCORR_NORMED', 'cv.TM_SQDIFF_NORMED']
-# read_card(img2)
+read_card(img2)
 
 # colormap = 'gray'
 colormap = 'Greys_r'
