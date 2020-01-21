@@ -8,6 +8,7 @@ from PIL import Image
 import numpy
 import os
 import platform
+from fixed_path import fix
 
 max_mana = 3
 max_attack = 4
@@ -23,7 +24,7 @@ card_res = 1080
 def find_mana(card):
     mana_list = []
     for num in range(1,max_mana+1):
-        mana = f'Hearthstone myndir\\New folder\\{num} mana.png'
+        mana = f'Hearthstone myndir/New folder/{num} mana.png'
         mana_list.append((num, get_max_val(card,mana)))
         if mana_list[-1][1] > satisfying:
             return mana_list[-1][0]
@@ -39,7 +40,7 @@ def find_health(card, hero=False):
     hp_list = []
 
     for num in range(1,max_hp+1):
-        hp = f'Hearthstone myndir\\New folder\\{num} hp.png'
+        hp = fix(f'Hearthstone myndir/New folder/{num} hp.png')
         hp_list.append((num, get_max_val(card,hp)))
         if hp_list[-1][1] > satisfying:
             return hp_list[-1][0]
@@ -50,7 +51,7 @@ def find_health(card, hero=False):
 def find_attack(card):
     attack_list = []
     for num in range(1,max_attack+1):
-        attack = f'Hearthstone myndir\\New folder\\{num} attack.png'
+        attack = fix(f'Hearthstone myndir/New folder/{num} attack.png')
         attack_list.append((num, get_max_val(card,attack)))
         if attack_list[-1][1] > satisfying:
             return attack_list[-1][0]
@@ -119,7 +120,7 @@ import time
 
 for i in range(-700, -670, 1):
     card_res += i
-    the_card = 'Hearthstone myndir\\Damaged 2-2 board.png'
+    the_card = fix('Hearthstone myndir/Damaged 2-2 board.png')
     # print(i, 'Stats:', find_mana(the_card),find_attack(the_card),find_health(the_card))
     print(i, find_attack(the_card), find_health(the_card))
     card_res -= i

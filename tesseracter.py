@@ -8,6 +8,8 @@ from pathlib import Path
 import platform
 from fixed_path import fix
 
+#try, except Importerror: os.system('pip install opencv-python')
+
 def subimg(img1,img2):
     img1=numpy.asarray(img1)
     img2=numpy.asarray(img2)
