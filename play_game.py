@@ -1,5 +1,7 @@
 # Hvað er pointið á að hafa klasa ef hann gerir ekki neitt nema hjúpa 
 
+#RUSL
+
 class Play():
     def muligan(c1,c2,c3,c4=None,coin=False):
         """ True mean we kepp it, False means we dircard it """
