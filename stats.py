@@ -14,7 +14,7 @@ max_mana = 3
 max_attack = 4
 max_hero_health = 30
 max_health = 2
-satisfying = 0.99
+satisfying = 1
 standard_res = 1080
 card_res = 1080
 
@@ -115,6 +115,10 @@ def closest_match(a_list):
             the_stat, min_delta = stat, abs(match - 1)
         
     return the_stat
+
+
+def get_stats(image):
+    return find_mana(image),find_attack(image),find_health(image)
 
 import time
 

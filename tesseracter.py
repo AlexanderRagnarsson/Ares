@@ -52,24 +52,21 @@ def read_card(an_img):
         for meth in methods:
             method = eval(meth)
         # Apply template Matching
-            res = cv.matchTemplate(img,template,method)
+            res = cv.matchTemplate(image,template,method)
             min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
             total += max_val
         if 0.9 < total/3 < 1.1:
             print(data_img[29:])
 
 
-# big=Image.open('Hearthstone myndir\\Angry chicken full.png')            
 
-# small = Image.open('Hearthstone myndir\\New folder\\1 hp (abusive).png')
+image = cv.imread(fix("Hearthstone myndir/Shattered sun cleric.png"),0)
+image2 = image.copy()
+template = cv.imread(fix('Hearthstone myndir/New folder/3 attack.png'),0)
 
-# print(subimg(small, big))
+cv.imshow('img',image)
 
-
-
-img = cv.imread(fix("Hearthstone myndir/Angry chicken full.png"),0)
-img2 = img.copy()
-template = cv.imread(fix('Hearthstone myndir/New folder/1 hp (abusive) bigger.png'),0)
+print('gg')
 
 total = 0
 total_list = []
@@ -81,16 +78,15 @@ w, h = template.shape[::-1]
             # 'cv.TM_CCORR_NORMED', 'cv.TM_SQDIFF', 'cv.TM_SQDIFF_NORMED']
 # Hin þrjú skila mjög stóru max_val
 methods = ['cv.TM_CCOEFF_NORMED','cv.TM_CCORR_NORMED', 'cv.TM_SQDIFF_NORMED']
-read_card(img2)
 
-colormap = 'rainbow'
-# colormap = 'binary'
+# colormap = 'rainbow'
+colormap = 'binary'
 
 for meth in methods:
-    img = img2.copy()
+    image = image2.copy()
     method = eval(meth)
     # Apply template Matching
-    res = cv.matchTemplate(img,template,method)
+    res = cv.matchTemplate(image,template,method)
     min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
     total += max_val
     total_list.append(max_val)
@@ -102,10 +98,10 @@ for meth in methods:
     else:
         top_left = max_loc
     bottom_right = (top_left[0] + w, top_left[1] + h)
-    cv.rectangle(img,top_left, bottom_right, 255, 2)
+    cv.rectangle(image,top_left, bottom_right, 255, 2)
     plt.subplot(121),plt.imshow(res,cmap = colormap)
     plt.title('Matching Result'), plt.xticks([]), plt.yticks([])
-    plt.subplot(122),plt.imshow(img,cmap = colormap)
+    plt.subplot(122),plt.imshow(image,cmap = colormap)
     plt.title('Detected Point'), plt.xticks([]), plt.yticks([])
     plt.suptitle(meth)
     plt.show()
