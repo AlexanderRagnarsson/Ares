@@ -13,7 +13,7 @@ max_mana = 3
 max_attack = 4
 max_hero_health = 30
 max_health = 2
-satisfying = 0.99
+satisfying = 1
 standard_res = 1080
 card_res = 1080
 
@@ -115,14 +115,14 @@ def closest_match(a_list):
         
     return the_stat
 
+
+def get_stats(image):
+    return find_mana(image),find_attack(image),find_health(image)
+
 import time
 
-for i in range(-700, -670, 1):
-    card_res += i
-    the_card = 'Hearthstone myndir\\Damaged 2-2 board.png'
-    # print(i, 'Stats:', find_mana(the_card),find_attack(the_card),find_health(the_card))
-    print(i, find_attack(the_card), find_health(the_card))
-    card_res -= i
+image = 'Hearthstone myndir\Shattered sun cleric.png'
+print(get_stats(image))
 
 # Miðað við 1080p þá virkaði -100 á argent í hand
 # Miðað við 1080p þá virkaði -450 á argent í muligan   -440 nákvæmast
