@@ -30,11 +30,15 @@ ENEMY_HERO = 800,201
 Y_ENEMY_BOARD = 373
 Y_BOARD = 532
 
-BOARD_X_DELTA = (859-740) / 2
+BOARD_X_DELTA = (859-740)
 
 BOARD_X_MIDDLE = 797
 
-EVEN_ODD_BOARD_DELTA = 0
+EVEN_ODD_BOARD_DELTA = 15
+
+MULIGAN = 790, 753
+
+PLAY = 1205,790
 
 # email = alexanderragnarssonag@gmail.com
 # PASSWORD = Areserbestur1
@@ -103,7 +107,7 @@ def end_turn():
     pyautogui.moveTo(END_TURN)
     pyautogui.mouseDown(duration=0.1)
     pyautogui.mouseUp(duration=0.1)
-    time.sleep(15)
+    
 
 def hero_power():
     pyautogui.moveTo(HERO_POWER)
@@ -112,8 +116,15 @@ def hero_power():
     # pyautogui.mouseUp(duration=0.1)
     time.sleep(0.1)
 
+def hero_power_click():
+    pyautogui.moveTo(HERO_POWER)
+    pyautogui.click(button = 'left')
+    # pyautogui.mouseDown(duration=0.1)
+    # pyautogui.mouseUp(duration=0.1)
+    time.sleep(0.1)
+
 def SMORC():
-    for i in range(7):
+    for i in range(4):
         minion_pos = act_human(BOARD_X_MIDDLE + (i*BOARD_X_DELTA + EVEN_ODD_BOARD_DELTA)),act_human(Y_BOARD)
         pyautogui.moveTo(minion_pos)
         pyautogui.dragTo(act_human(ENEMY_HERO[0]),act_human(ENEMY_HERO[1]),0.15,button='left')
@@ -144,23 +155,30 @@ def play_spell(card_number=1,card_count=1):
 
 
 def attack_all_minions(original_pos):
-    for i in range(7):
+    for i in range(4):
         pyautogui.dragTo(act_human(BOARD_X_MIDDLE + (i*BOARD_X_DELTA + EVEN_ODD_BOARD_DELTA)),act_human(Y_ENEMY_BOARD),0.04,button='left')
         pyautogui.moveTo(original_pos)
         pyautogui.dragTo(act_human(BOARD_X_MIDDLE - (i*BOARD_X_DELTA + EVEN_ODD_BOARD_DELTA)),act_human(Y_ENEMY_BOARD),0.04,button='left')
         
         time.sleep(0.005)
 
-# for i in range(10,0,-1):
+def muligan():
+    pyautogui.moveTo(MULIGAN)
+    pyautogui.click()
 
-    # hero_power
+def play():
+    pyautogui.moveTo(PLAY)
+    pyautogui.click()
+
+
 
 while True:
     # if keyboard.read_key() == 'q':
     #     break
     time.sleep(1)
-    # for i in range(1,5):
-
+    
+    muligan()
+    
     for j in range(1,11):
         play_spell(j,10)
         pyautogui.click(button='right')
@@ -170,19 +188,22 @@ while True:
     pyautogui.click(button='right')
 
     hero_power()
+    hero_power_click()
 
     end_turn()
-    time.sleep(4)
+
+    play()
+    time.sleep(28)
 
 
 
 
-def play_hearhtstone():
-    print(pyautogui.position())
+# def play_hearhtstone():
+#     print(pyautogui.position())
 
-while True:
-    if keyboard.read_key() == 'g':
-        play_hearhtstone()
-        time.sleep(0.5)
-    elif keyboard.read_key() == 'q':
-        break
+# while True:
+#     if keyboard.read_key() == 'g':
+#         play_hearhtstone()
+#         time.sleep(0.5)
+#     elif keyboard.read_key() == 'q':
+#         break
