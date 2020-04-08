@@ -39,9 +39,10 @@ EVEN_ODD_BOARD_DELTA = 15
 MULIGAN = 790, 753
 
 PLAY = 1205,790
+OKAY = 800,588
+PLAY_MENU = 800,314
+RECONNECT = 689,728
 
-# email = alexanderragnarssonag@gmail.com
-# PASSWORD = Areserbestur1
 # first_car = Ares#26419
 
 # HAND = [712]
@@ -167,6 +168,14 @@ def muligan():
     pyautogui.click()
 
 def play():
+    pyautogui.moveTo(RECONNECT)
+    pyautogui.click()
+    pyautogui.moveTo(OKAY)              # In case we get an error saying 
+    pyautogui.click()       
+    time.sleep(0.3)
+    pyautogui.moveTo(PLAY_MENU)
+    pyautogui.click()        
+    time.sleep(0.1)
     pyautogui.moveTo(PLAY)
     pyautogui.click()
 
@@ -193,17 +202,4 @@ while True:
     end_turn()
 
     play()
-    time.sleep(28)
-
-
-
-
-# def play_hearhtstone():
-#     print(pyautogui.position())
-
-# while True:
-#     if keyboard.read_key() == 'g':
-#         play_hearhtstone()
-#         time.sleep(0.5)
-#     elif keyboard.read_key() == 'q':
-#         break
+    time.sleep(32)
